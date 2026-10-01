@@ -44,7 +44,7 @@ void about() {
   std::cout << "std::thread example\n";
 }
 
-void funcThread(const ThreadArgs& args, Logger& logger) {
+void funcThread(const ThreadArgs& args, Logger& logger, std::promise<std::string> prom) {
     for (int i = 0; i < COUNT_ITERATIONS; ++i) {
         std::ostringstream oss;
         oss << "[tag = " << args.tag
@@ -53,14 +53,10 @@ void funcThread(const ThreadArgs& args, Logger& logger) {
             << " pid = " << ::getpid()
             << " ppid = " << ::getppid()
             << " iter = " << i
-	    << "\n";
+            << "\n";
         logger.writeLine(oss.str());
-
-       // std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-    // race-тест счётчика
-   // for (int j = 0; j < 100000; ++j) {
-     //   counter++;
- //   }
+    // возвращаем значение в main через promise
+    prom.set_value("[" + args.tag + "] выполнено итераций: " + std::to_string(COUNT_ITERATIONS));
 }

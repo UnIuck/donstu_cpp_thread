@@ -27,14 +27,24 @@ for (int i = 0; i < COUNT_THREADS; ++i) {
   std::vector<std::thread> threads;
   threads.reserve(COUNT_THREADS);
 
-  for (int i = 0; i < COUNT_THREADS; ++i) {
-    threads.emplace_back(funcThread, std::cref(args[i]), std::ref(logger));
-  }
+  // promise/future для первого потока
+std::promise<std::string> prom;
+std::future<std::string> fut = prom.get_future();
+
+threads.emplace_back(funcThread, std::cref(args[0]), std::ref(logger), std::move(prom));
+
+for (int i = 1; i < COUNT_THREADS; ++i) {
+    std::promise<std::string> dummy;
+    threads.emplace_back(funcThread, std::cref(args[i]), std::ref(logger), std::move(dummy));
+}
 
   // wait for stop all threads
   for (auto& t : threads) {
     if (t.joinable()) t.join();         
   }
+
+  std::string result = fut.get();
+  std::cout << "Поток вернул: " << result << "\n";
 
   std::cout << "counter = " << counter << "\n";
   // close file automatically

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <future>
 #include <atomic>
 #include <string>
 #include <mutex>
@@ -34,7 +35,7 @@ private:
 };
 
 // function for thread
-void funcThread(const ThreadArgs& args, Logger& logger);
+void funcThread(const ThreadArgs& args, Logger& logger, std::promise<std::string> prom);
 
 // get system TID for current linux thread
 pid_t getThreadID();

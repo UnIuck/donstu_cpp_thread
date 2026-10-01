@@ -42,18 +42,18 @@ void about() {
 }
 
 void funcThread(const ThreadArgs& args, Logger& logger) {
-  for (int i = 0; i < COUNT_ITERATIONS; ++i) {
-    std::ostringstream oss;
+    for (int i = 0; i < COUNT_ITERATIONS; ++i) {
+        std::ostringstream oss;
+        oss << "[tag = " << args.tag
+            << "] std::thread::id = " << std::this_thread::get_id()
+            << " sys_tid = " << getThreadID()
+            << " pid = " << ::getpid()
+            << " ppid = " << ::getppid()
+            << " iter = " << i
+            << "\n";
+        logger.writeLine(oss.str());
 
-    oss << "[tag = " << args.tag
-        << "] pid = "  << ::getpid()
-        << " ppid = "  << ::getppid()
-        << " tid = "   << getThreadID()
-        << " iter = "  << i
-        << "\n";
-    logger.writeLine(oss.str());
-
-    // imitation of useful work
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-  }
+        // imitation of useful work
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
 }

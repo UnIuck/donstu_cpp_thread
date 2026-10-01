@@ -49,7 +49,8 @@ void funcThread(const ThreadArgs& args, Logger& logger) {
             << " sys_tid = " << getThreadID()
             << " pid = " << ::getpid()
             << " ppid = " << ::getppid()
-            << " iter = " << i;
+            << " iter = " << i
+            << "\n";
         logger.writeLine(oss.str());
 
         // imitation of useful work

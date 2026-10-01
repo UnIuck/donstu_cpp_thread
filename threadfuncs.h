@@ -6,7 +6,7 @@
 
 // count of threads and iterations
 constexpr int COUNT_THREADS    = 4;
-constexpr int COUNT_ITERATIONS = 1000;
+constexpr int COUNT_ITERATIONS = 50;
 
 // args for thread
 struct ThreadArgs {

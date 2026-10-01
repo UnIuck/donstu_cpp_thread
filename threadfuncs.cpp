@@ -45,22 +45,22 @@ void about() {
 }
 
 void funcThread(const ThreadArgs& args, Logger& logger) {
-  //  for (int i = 0; i < COUNT_ITERATIONS; ++i) {
-      //  std::ostringstream oss;
-    //    oss << "[tag = " << args.tag
-           // << "] std::thread::id = " << std::this_thread::get_id()
-           // << " sys_tid = " << getThreadID()
-          //  << " pid = " << ::getpid()
-        //    << " ppid = " << ::getppid()
-      //      << " iter = " << i;
-    //    logger.writeLine(oss.str());
+    for (int i = 0; i < COUNT_ITERATIONS; ++i) {
+        std::ostringstream oss;
+        oss << "[tag = " << args.tag
+            << "] std::thread::id = " << std::this_thread::get_id()
+            << " sys_tid = " << getThreadID()
+            << " pid = " << ::getpid()
+            << " ppid = " << ::getppid()
+            << " iter = " << i
+	    << "\n";
+        logger.writeLine(oss.str());
 
-        // imitation of useful work
-  //      std::this_thread::sleep_for(std::chrono::milliseconds(100));
-//    }
+       // std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
 
     // race-тест счётчика
-    for (int j = 0; j < 10000000; ++j) {
-        counter++;
-    }
+   // for (int j = 0; j < 100000; ++j) {
+     //   counter++;
+ //   }
 }

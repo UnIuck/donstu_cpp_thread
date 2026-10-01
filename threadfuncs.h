@@ -7,7 +7,7 @@
 
 // count of threads and iterations
 constexpr int COUNT_THREADS    = 4;
-constexpr int COUNT_ITERATIONS = 50;
+constexpr int COUNT_ITERATIONS = 5;
 extern std::atomic<int> counter;
 // args for thread
 struct ThreadArgs {

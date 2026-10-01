@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -pthread
+CXXFLAGS = -std=c++17 -Wall -Wextra -pthread -O0
 
 app: main.cpp threadfuncs.cpp threadfuncs.h
 	$(CXX) $(CXXFLAGS) $^ -o $@

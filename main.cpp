@@ -36,7 +36,8 @@ for (int i = 0; i < COUNT_THREADS; ++i) {
     if (t.joinable()) t.join();         
   }
 
+  std::cout << "counter = " << counter << "\n";
   // close file automatically
-  std::cout << "main: all threads finished, file closed\n";
+ // std::cout << "main: all threads finished, file closed\n";
   return 0;
 }
